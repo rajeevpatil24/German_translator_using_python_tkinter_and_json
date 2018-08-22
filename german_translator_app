@@ -1,0 +1,46 @@
+#This python code helps you to create Desktop application using Tkinter and Json 
+
+from Tkinter import*
+import json
+import os
+
+master=Tk()
+master.title("String methods")
+
+def json_parser():
+    path = os.path.dirname(__file__)
+
+    try:
+        with open('german_lang_translator.json') as testFile:
+            testData = json.load(testFile)
+            result=testData[s.get().title()]
+            s.set(result)
+    except Exception as error:
+        raise Exception("Failed while loading json data")
+
+
+    except ValueError:
+        pass
+
+
+def clr():
+    try:
+        s.set("")
+        
+    except ValueError:
+        pass
+
+
+s = StringVar()
+
+entry=Entry(master, textvariable=s)
+entry.grid(row=0, columnspan=14, sticky=W+E)
+
+
+button_capitalize=Button(master, text="Enter your words to get Translated from English to German in small letters only", width=100, command=json_parser)
+button_capitalize.grid(row=2, column=0)
+
+button_clear=Button(master, text="Clear", command=clr )
+button_clear.grid(row=3, columnspan=13,sticky=W+E)
+
+master.mainloop()
